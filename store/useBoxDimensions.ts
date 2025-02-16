@@ -47,7 +47,7 @@ export const useBoxDimensions = create<BoxState>()(
       boxDepth: 37,
       flapHeight: 20,
       tuckFlapHeight: 16,
-      scale: 0.65,
+      scale: 1,
       printOffset: 4,
       faction: Faction.NEUTRAL,
       factionGradient: '',
