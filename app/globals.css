@@ -13,7 +13,7 @@ body {
 
 
 .NEUTRAL {
-  background: radial-gradient(circle, rgba(208,208,208,1) 0%, rgba(121,121,121,1) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgba(208,208,208,1) 0%, rgba(121,121,121,1) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -21,7 +21,7 @@ body {
 }
 
 .ADAM {
-  background: radial-gradient(circle, rgb(173, 173, 58) 0%, rgb(117, 117, 12) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(173, 173, 58) 0%, rgb(117, 117, 12) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -29,7 +29,7 @@ body {
 }
 
 .ANARCH {
-  background: radial-gradient(circle, rgb(202, 147, 65) 0%, rgb(158, 66, 9) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(202, 147, 65) 0%, rgb(158, 66, 9) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -37,7 +37,7 @@ body {
 }
 
 .APEX {
-  background: radial-gradient(circle, rgb(233, 36, 1) 0%, rgb(88, 21, 4) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(233, 36, 1) 0%, rgb(88, 21, 4) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -45,7 +45,7 @@ body {
 }
 
 .CRIMINAL {
-  background: radial-gradient(circle, rgb(123, 192, 233) 0%, rgb(4, 87, 126) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(123, 192, 233) 0%, rgb(4, 87, 126) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -54,7 +54,7 @@ body {
 
 
 .HB {
-  background: radial-gradient(circle, rgb(169, 149, 221) 0%, rgb(24, 14, 53) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(169, 149, 221) 0%, rgb(24, 14, 53) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -62,7 +62,7 @@ body {
 }
 
 .JINTEKI {
-  background: radial-gradient(circle, rgb(250, 89, 89) 0%, rgb(78, 3, 3) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(250, 89, 89) 0%, rgb(78, 3, 3) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -70,7 +70,7 @@ body {
 }
 
 .NBN {
-  background: radial-gradient(circle, rgb(247, 221, 135) 0%, rgb(253, 165, 0) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(247, 221, 135) 0%, rgb(253, 165, 0) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -78,7 +78,7 @@ body {
 }
 
 .SHAPER {
-  background: radial-gradient(circle, rgb(94, 207, 94) 0%, rgb(18, 95, 11) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(94, 207, 94) 0%, rgb(18, 95, 11) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -86,7 +86,7 @@ body {
 }
 
 .SUNNY {
-  background: radial-gradient(circle, rgba(192,175,235,1) 0%, rgb(67, 62, 82) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgba(192,175,235,1) 0%, rgb(67, 62, 82) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
@@ -94,7 +94,7 @@ body {
 }
 
 .WEYLAND {
-  background: radial-gradient(circle, rgb(115, 141, 129) 0%, rgb(35, 54, 34) 100%), url('/texture.jpg');
+  background: radial-gradient(circle, rgb(115, 141, 129) 0%, rgb(35, 54, 34) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;

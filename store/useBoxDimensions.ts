@@ -17,7 +17,6 @@ interface BoxState {
   scale: number
   printOffset: number
   faction: Faction
-  factionGradient: string
   deckName: string
   identities: NetrunnerCard[]
   selectedIdentity: string
@@ -50,7 +49,6 @@ export const useBoxDimensions = create<BoxState>()(
       scale: 1,
       printOffset: 4,
       faction: Faction.NEUTRAL,
-      factionGradient: '',
       deckName: '',
       identities: [],
       selectedIdentity: '',
@@ -64,11 +62,7 @@ export const useBoxDimensions = create<BoxState>()(
       setTuckFlapHeight: (height) => set({ tuckFlapHeight: height }),
       setScale: (scale) => set({ scale }),
       setPrintOffset: (offset) => set({ printOffset: offset }),
-      setFaction: (faction) => {
-        console.log(faction, GetFactionGradient(faction))
-        set({ faction })
-        set({ factionGradient: GetFactionGradient(faction) })
-      },
+      setFaction: (faction) => set({ faction }),
       setDeckName: (name) => set({ deckName: name }),
       setIdentities: (identities) => set({ identities }),
       setSelectedIdentity: (identity) => set({ selectedIdentity: identity }),

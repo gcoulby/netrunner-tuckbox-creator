@@ -33,7 +33,7 @@ export default function SideBar() {
 
   useEffect(() => {
     // if identities were updated in the last 24hrs, don't fetch them again
-    if (identitiesLastUpdated.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
+    if (new Date(identitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
     fetch('https://netrunnerdb.com/api/2.0/public/cards')
       .then((res) => res.json())
       .then((data) => {
