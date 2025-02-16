@@ -2,20 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@700&family=Public+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"); /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: 'Play' sans-serif;
+}
+
+
+.NEUTRAL {
+  background: radial-gradient(circle, rgba(208,208,208,1) 0%, rgba(121,121,121,1) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgba(121,121,121,1)
+}
+
+.ADAM {
+  background: radial-gradient(circle, rgb(173, 173, 58) 0%, rgb(117, 117, 12) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgb(117, 117, 12)
+}
+
+.ANARCH {
+  background: radial-gradient(circle, rgb(202, 147, 65) 0%, rgb(158, 66, 9) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgb(158, 66, 9)
+}
+
+.APEX {
+  background: radial-gradient(circle, rgb(233, 36, 1) 0%, rgb(88, 21, 4) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgb(88, 21, 4)
+}
+
+.CRIMINAL {
+  background: radial-gradient(circle, rgb(123, 192, 233) 0%, rgb(4, 87, 126) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgb(4, 87, 126)
+}
+
+
+.HB {
+  background: radial-gradient(circle, rgb(169, 149, 221) 0%, rgb(24, 14, 53) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgba(67,54,105,1)
+}
+
+.JINTEKI {
+  background: radial-gradient(circle, rgb(250, 89, 89) 0%, rgb(78, 3, 3) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgb(163, 24, 24)
+}
+
+.NBN {
+  background: radial-gradient(circle, rgb(247, 221, 135) 0%, rgb(253, 165, 0) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgba(213,213,96,1)
+}
+
+.SHAPER {
+  background: radial-gradient(circle, rgb(94, 207, 94) 0%, rgb(18, 95, 11) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgb(126, 197, 119)
+}
+
+.SUNNY {
+  background: radial-gradient(circle, rgba(192,175,235,1) 0%, rgb(67, 62, 82) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgb(71, 67, 83)
+}
+
+.WEYLAND {
+  background: radial-gradient(circle, rgb(115, 141, 129) 0%, rgb(35, 54, 34) 100%), url('/texture.jpg');
+  background-size: 400px;
+  background-position: center;
+  background-blend-mode: multiply;
+  border-color: rgb(35, 54, 34)
+}
+
+
+@media print {
+  .SHAPER, .SUNNY, .WEYLAND, .NBN, .JINTEKI, .HB, .CRIMINAL, .APEX, .ANARCH, .ADAM, .NEUTRAL {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    /* background-blend-mode: normal !important; */
+  }
+
+  .box-net {
+    scale: 1 !important;
+  }
 }
