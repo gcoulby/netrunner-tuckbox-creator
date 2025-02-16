@@ -20,7 +20,7 @@ export const metadata = {
     initialScale: 1,
   },
 
-  manifest: '/images/site.webmanifest',
+  manifest: '/netrunner-tuckbox-creator/images/site.webmanifest',
 }
 
 export default function RootLayout({
