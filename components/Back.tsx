@@ -10,14 +10,16 @@ export default function Back() {
         style={{ width: `${boxWidth}mm`, height: `${tuckFlapHeight}mm` }}
         className={`relative flex flex-col items-center border border-b-0 border-black rounded-t-full overflow-hidden ${faction}`}
       >
-        <img
-          // className="w-full h-full"
-          style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm`, rotate: '180deg', marginTop: `-${boxHeight - flapHeight + printOffset}mm` }}
-          src={`https://card-images.netrunnerdb.com/v2/large/${selectedIdentity}.jpg`}
-          alt="Box front"
-          width={boxWidth}
-          height={boxHeight}
-        />
+        {selectedIdentity !== '' && (
+          <img
+            // className="w-full h-full"
+            style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm`, rotate: '180deg', marginTop: `-${boxHeight - flapHeight + printOffset}mm` }}
+            src={`https://card-images.netrunnerdb.com/v2/large/${selectedIdentity}.jpg`}
+            alt="Box front"
+            width={boxWidth}
+            height={boxHeight}
+          />
+        )}
       </div>
       <div
         style={{ width: `${boxWidth}mm`, height: `${boxDepth}mm` }}
@@ -30,13 +32,15 @@ export default function Back() {
         style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm` }}
         className={`relative flex flex-col items-center border border-s-0 border-black ${faction}`}
       >
-        <img
-          className="w-full h-full"
-          src={`https://card-images.netrunnerdb.com/v2/large/${selectedIdentity}.jpg`}
-          alt="Box front"
-          width={boxWidth}
-          height={boxHeight}
-        />
+        {selectedIdentity !== '' && (
+          <img
+            className="w-full h-full"
+            src={`https://card-images.netrunnerdb.com/v2/large/${selectedIdentity}.jpg`}
+            alt="Box front"
+            width={boxWidth}
+            height={boxHeight}
+          />
+        )}
       </div>
       <div
         style={{ width: `${boxWidth}mm`, height: `${boxDepth}mm` }}

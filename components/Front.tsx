@@ -10,13 +10,15 @@ export default function Front() {
       style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm` }}
       className={`relative flex flex-col items-center border border-s-0 border-black ${faction}`}
     >
-      <img
-        className="w-full h-full"
-        src={`https://card-images.netrunnerdb.com/v2/large/${selectedIdentity}.jpg`}
-        alt="Box front"
-        width={boxWidth}
-        height={boxHeight}
-      />
+      {selectedIdentity !== '' && (
+        <img
+          className="w-full h-full"
+          src={`https://card-images.netrunnerdb.com/v2/large/${selectedIdentity}.jpg`}
+          alt="Box front"
+          width={boxWidth}
+          height={boxHeight}
+        />
+      )}
       <ThumbTab />
     </div>
   )
