@@ -1,6 +1,6 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
 import { Faction, NetrunnerCard } from '@/types'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 export default function SideBar() {
   const {
@@ -28,7 +28,6 @@ export default function SideBar() {
     setDeckName,
     setIdentities,
     setSelectedIdentity,
-    setIdentityImageUrl,
     setIdentitiesLastUpdated,
   } = useBoxDimensions()
 
@@ -38,11 +37,11 @@ export default function SideBar() {
     fetch('https://netrunnerdb.com/api/2.0/public/cards')
       .then((res) => res.json())
       .then((data) => {
-        const ids = data.data.filter((card: any) => card.type_code === 'identity')
-        setIdentities(ids.map((id: any) => id))
+        const ids = data.data.filter((card: NetrunnerCard) => card.type_code === 'identity')
+        setIdentities(ids.map((id: NetrunnerCard) => id))
         setIdentitiesLastUpdated(new Date())
       })
-  }, [])
+  }, [identitiesLastUpdated, setIdentities, setIdentitiesLastUpdated])
 
   return (
     <aside className="print:hidden flex flex-col gap-2 bg-slate-800 px-4 w-[300px] h-svh text-xs">
@@ -64,15 +63,7 @@ export default function SideBar() {
       <div className="flex flex-row items-center gap-2">
         <div className="w-1/3 text-white">Identity</div>
         {/* select with search */}
-        <select
-          className="p-2 w-2/3"
-          value={selectedIdentity}
-          onChange={(e) => {
-            setSelectedIdentity(e.target.value)
-            // const identity = identities.find((id) => id.code === e.target.value)
-            // setIdentityImageUrl(identity?.imagesrc ?? '')
-          }}
-        >
+        <select className="p-2 w-2/3" value={selectedIdentity} onChange={(e) => setSelectedIdentity(e.target.value)}>
           <option value="">Select Identity</option>
           {identities
             .sort((a, b) => a.title.localeCompare(b.title))

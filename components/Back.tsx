@@ -2,24 +2,7 @@ import { useBoxDimensions } from '@/store/useBoxDimensions'
 import React from 'react'
 
 export default function Back() {
-  const {
-    scale,
-    boxDepth,
-    boxHeight,
-    boxWidth,
-    tuckFlapHeight,
-    faction,
-    selectedIdentity,
-    deckName,
-    flapHeight,
-    printOffset,
-    setBoxDepth,
-    setBoxHeight,
-    setBoxWidth,
-    setFlapHeight,
-    setScale,
-    setTuckFlapHeight,
-  } = useBoxDimensions()
+  const { boxDepth, boxHeight, boxWidth, tuckFlapHeight, faction, selectedIdentity, deckName, flapHeight, printOffset } = useBoxDimensions()
 
   return (
     <div className="flex flex-col items-center">

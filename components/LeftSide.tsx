@@ -3,7 +3,7 @@ import React from 'react'
 import BoxSidePanel from './BoxSidePanel'
 
 export default function LeftSide() {
-  const { boxHeight, boxWidth, boxDepth, flapHeight, faction } = useBoxDimensions()
+  const { boxDepth, flapHeight, faction } = useBoxDimensions()
   return (
     <div className="flex flex-col items-center">
       <div
