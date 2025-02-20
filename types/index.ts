@@ -1,3 +1,8 @@
+export enum LCG {
+  NETRUNNER = 'Android: Netrunner',
+  ARKHAM = 'Arkham Horror: The Card Game',
+}
+
 export enum Faction {
   NEUTRAL = 'NEUTRAL',
   ADAM = 'ADAM',
@@ -12,21 +17,28 @@ export enum Faction {
   WEYLAND = 'WEYLAND',
 }
 
-export type NetrunnerCard = {
+// export type NetrunnerCard = {
+//   code: string
+//   type_code: string
+//   title: string
+//   faction: Faction
+//   type: string
+//   subtype: string
+//   influence: number
+//   cost: number
+//   strength: number
+//   text: string
+//   flavor: string
+//   illustrator: string
+//   set: string
+//   number: number
+//   rarity: string
+//   image: string
+// }
+
+export type IdentityCard = {
   code: string
-  type_code: string
   title: string
-  faction: Faction
-  type: string
-  subtype: string
-  influence: number
-  cost: number
-  strength: number
-  text: string
-  flavor: string
-  illustrator: string
-  set: string
-  number: number
-  rarity: string
+  type_code: string
   image: string
 }

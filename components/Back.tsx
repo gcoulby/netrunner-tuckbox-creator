@@ -1,8 +1,10 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
+import { useLCGStore } from '@/store/useLCGStore'
 import React from 'react'
 
 export default function Back() {
-  const { boxDepth, boxHeight, boxWidth, tuckFlapHeight, faction, selectedIdentity, deckName, flapHeight, printOffset } = useBoxDimensions()
+  const { boxDepth, boxHeight, boxWidth, tuckFlapHeight, deckName, flapHeight, printOffset } = useBoxDimensions()
+  const { faction, selectedIdentity, getImageUrl } = useLCGStore()
 
   return (
     <div className="flex flex-col items-center">
@@ -14,7 +16,7 @@ export default function Back() {
           <img
             // className="w-full h-full"
             style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm`, rotate: '180deg', marginTop: `-${boxHeight - flapHeight + printOffset}mm` }}
-            src={`https://card-images.netrunnerdb.com/v2/large/${selectedIdentity}.jpg`}
+            src={getImageUrl()}
             alt="Box front"
             width={boxWidth}
             height={boxHeight}
@@ -32,15 +34,7 @@ export default function Back() {
         style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm` }}
         className={`relative flex flex-col items-center border border-s-0 border-black ${faction}`}
       >
-        {selectedIdentity !== '' && (
-          <img
-            className="w-full h-full"
-            src={`https://card-images.netrunnerdb.com/v2/large/${selectedIdentity}.jpg`}
-            alt="Box front"
-            width={boxWidth}
-            height={boxHeight}
-          />
-        )}
+        {selectedIdentity !== '' && <img className="w-full h-full" src={getImageUrl()} alt="Box front" width={boxWidth} height={boxHeight} />}
       </div>
       <div
         style={{ width: `${boxWidth}mm`, height: `${boxDepth}mm` }}

@@ -1,8 +1,10 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
+import { useLCGStore } from '@/store/useLCGStore'
 import React from 'react'
 
 export default function GlueTab() {
-  const { boxDepth, boxHeight, flapHeight, printOffset, faction } = useBoxDimensions()
+  const { boxDepth, boxHeight, flapHeight, printOffset } = useBoxDimensions()
+  const { faction } = useLCGStore()
   return (
     <div className="flex flex-col">
       <div className="flex" style={{ height: `${flapHeight + boxDepth - printOffset}mm` }}></div>

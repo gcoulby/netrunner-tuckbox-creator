@@ -1,5 +1,3 @@
-import { GetFactionGradient } from '@/composables/factionColors'
-import { Faction, NetrunnerCard } from '@/types'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
@@ -16,12 +14,12 @@ interface BoxState {
   tuckFlapHeight: number
   scale: number
   printOffset: number
-  faction: Faction
+  // faction: Faction
   deckName: string
-  identities: NetrunnerCard[]
-  selectedIdentity: string
-  identityImageUrl: string
-  identitiesLastUpdated: Date
+  // identities: NetrunnerCard[]
+  // selectedIdentity: string
+  // identityImageUrl: string
+  // identitiesLastUpdated: Date
 
   setBoxWidth: (width: number) => void
   setBoxHeight: (height: number) => void
@@ -30,12 +28,12 @@ interface BoxState {
   setTuckFlapHeight: (height: number) => void
   setScale: (scale: number) => void
   setPrintOffset: (offset: number) => void
-  setFaction: (faction: Faction) => void
+  // setFaction: (faction: Faction) => void
   setDeckName: (name: string) => void
-  setIdentities: (identities: NetrunnerCard[]) => void
-  setSelectedIdentity: (identity: string) => void
-  setIdentityImageUrl: (url: string) => void
-  setIdentitiesLastUpdated: (date: Date) => void
+  // setIdentities: (identities: NetrunnerCard[]) => void
+  // setSelectedIdentity: (identity: string) => void
+  // setIdentityImageUrl: (url: string) => void
+  // setIdentitiesLastUpdated: (date: Date) => void
 }
 
 export const useBoxDimensions = create<BoxState>()(
@@ -48,12 +46,12 @@ export const useBoxDimensions = create<BoxState>()(
       tuckFlapHeight: 16,
       scale: 1,
       printOffset: 4,
-      faction: Faction.NEUTRAL,
+      // faction: Faction.NEUTRAL,
       deckName: '',
-      identities: [],
-      selectedIdentity: '',
-      identityImageUrl: '',
-      identitiesLastUpdated: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      // identities: [],
+      // selectedIdentity: '',
+      // identityImageUrl: '',
+      // identitiesLastUpdated: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
 
       setBoxWidth: (width) => set({ boxWidth: width }),
       setBoxHeight: (height) => set({ boxHeight: height }),
@@ -62,12 +60,12 @@ export const useBoxDimensions = create<BoxState>()(
       setTuckFlapHeight: (height) => set({ tuckFlapHeight: height }),
       setScale: (scale) => set({ scale }),
       setPrintOffset: (offset) => set({ printOffset: offset }),
-      setFaction: (faction) => set({ faction }),
+      // setFaction: (faction) => set({ faction }),
       setDeckName: (name) => set({ deckName: name }),
-      setIdentities: (identities) => set({ identities }),
-      setSelectedIdentity: (identity) => set({ selectedIdentity: identity }),
-      setIdentityImageUrl: (url) => set({ identityImageUrl: url }),
-      setIdentitiesLastUpdated: (date) => set({ identitiesLastUpdated: date }),
+      // setIdentities: (identities) => set({ identities }),
+      // setSelectedIdentity: (identity) => set({ selectedIdentity: identity }),
+      // setIdentityImageUrl: (url) => set({ identityImageUrl: url }),
+      // setIdentitiesLastUpdated: (date) => set({ identitiesLastUpdated: date }),
     }),
     {
       name: 'box-dimensions-store', // Key in localStorage

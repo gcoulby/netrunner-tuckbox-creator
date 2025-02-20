@@ -1,5 +1,6 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
-import { Faction, NetrunnerCard } from '@/types'
+import { useLCGStore } from '@/store/useLCGStore'
+import { Faction, IdentityCard, LCG } from '@/types'
 import React, { useEffect } from 'react'
 
 export default function SideBar() {
@@ -11,11 +12,7 @@ export default function SideBar() {
     tuckFlapHeight,
     flapHeight,
     printOffset,
-    faction,
     deckName,
-    identities,
-    selectedIdentity,
-    identitiesLastUpdated,
 
     setBoxDepth,
     setBoxHeight,
@@ -24,27 +21,52 @@ export default function SideBar() {
     setScale,
     setTuckFlapHeight,
     setPrintOffset,
-    setFaction,
     setDeckName,
-    setIdentities,
-    setSelectedIdentity,
-    setIdentitiesLastUpdated,
   } = useBoxDimensions()
 
+  const { faction, identities, selectedIdentity, identitiesLastUpdated, setFaction, setIdentities, setSelectedIdentity, setIdentitiesLastUpdated } =
+    useLCGStore()
+
+  const { lcg, setLcg } = useLCGStore()
+
   useEffect(() => {
-    // if identities were updated in the last 24hrs, don't fetch them again
-    if (new Date(identitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
-    fetch('https://netrunnerdb.com/api/2.0/public/cards')
-      .then((res) => res.json())
-      .then((data) => {
-        const ids = data.data.filter((card: NetrunnerCard) => card.type_code === 'identity')
-        setIdentities(ids.map((id: NetrunnerCard) => id))
-        setIdentitiesLastUpdated(new Date())
-      })
-  }, [identitiesLastUpdated, setIdentities, setIdentitiesLastUpdated])
+    if (lcg === LCG.NETRUNNER) {
+      // if identities were updated in the last 24hrs, don't fetch them again
+      // if (new Date(identitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
+      fetch('https://netrunnerdb.com/api/2.0/public/cards')
+        .then((res) => res.json())
+        .then((data) => {
+          const ids = data.data.filter((card: IdentityCard) => card.type_code === 'identity')
+          setIdentities(ids.map((id: IdentityCard) => id))
+          setIdentitiesLastUpdated(new Date())
+        })
+    } else if (lcg === LCG.ARKHAM) {
+      fetch('https://arkhamdb.com/api/public/cards/')
+        .then((res) => res.json())
+        .then((data) => {
+          const normalizedData = data.map((card: any) => ({
+            ...card,
+            title: card.title || card.name, // Use `title` if available, otherwise `name`
+          }))
+          const ids = normalizedData.filter((card: IdentityCard) => card.type_code === 'investigator')
+          setIdentities(ids.map((id: IdentityCard) => id))
+          setIdentitiesLastUpdated(new Date())
+        })
+    }
+  }, [lcg, identitiesLastUpdated, setIdentities, setIdentitiesLastUpdated])
 
   return (
     <aside className="print:hidden flex flex-col gap-2 bg-slate-800 px-4 w-[300px] h-svh text-xs">
+      <h1 className="text-white text-lg">Game</h1>
+      <div className="flex flex-row items-center gap-2">
+        <div className="w-1/3 text-white">Game</div>
+        <select className="p-2 w-2/3" value={lcg} onChange={(e) => setLcg(e.target.value as LCG)}>
+          {Object.values(LCG).map((game) => (
+            <option key={game}>{game}</option>
+          ))}
+        </select>
+      </div>
+
       <h1 className="text-white text-lg">Deck Details</h1>
       <div className="flex flex-row items-center gap-2">
         <label className="w-1/3 text-white">Deck Name</label>

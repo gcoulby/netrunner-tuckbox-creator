@@ -1,9 +1,11 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
+import { useLCGStore } from '@/store/useLCGStore'
 import Image from 'next/image'
 import React from 'react'
 
 export default function BoxSidePanel() {
-  const { boxDepth, boxHeight, faction, deckName } = useBoxDimensions()
+  const { boxDepth, boxHeight, deckName } = useBoxDimensions()
+  const { faction } = useLCGStore()
   return (
     <div
       style={{ width: `${boxDepth}mm`, height: `${boxHeight}mm` }}

@@ -1,9 +1,11 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
 import React from 'react'
 import BoxSidePanel from './BoxSidePanel'
+import { useLCGStore } from '@/store/useLCGStore'
 
 export default function LeftSide() {
-  const { boxDepth, flapHeight, faction } = useBoxDimensions()
+  const { boxDepth, flapHeight } = useBoxDimensions()
+  const { faction } = useLCGStore()
   return (
     <div className="flex flex-col items-center">
       <div
