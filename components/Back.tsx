@@ -34,7 +34,7 @@ export default function Back() {
       </div>
       <div style={{ width: `${boxWidth}mm`, height: `${boxDepth}mm` }} className={`relative items-center border border-b-0 border-black  ${faction}`}>
         <div className="absolute inset-6 flex justify-items-center items-center bg-white rounded-md font-bold text-black text-center grow">
-          <span className="w-full text-center" style={{ fontSize: deckNameFontSize }}>
+          <span className="w-full text-center" style={{ fontSize: deckNameFontSize, whiteSpace: 'pre-line' }}>
             {deckName}
           </span>
         </div>
