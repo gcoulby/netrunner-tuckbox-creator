@@ -1,3 +1,4 @@
+import { IdentityCard } from '@/types'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
@@ -16,7 +17,7 @@ interface BoxState {
   printOffset: number
   // faction: Faction
   deckName: string
-  identities: NetrunnerCard[]
+  identities: IdentityCard[]
   selectedIdentity: string
   identityImageUrl: string
   identitiesLastUpdated: Date
@@ -31,7 +32,7 @@ interface BoxState {
   setPrintOffset: (offset: number) => void
   // setFaction: (faction: Faction) => void
   setDeckName: (name: string) => void
-  setIdentities: (identities: NetrunnerCard[]) => void
+  setIdentities: (identities: IdentityCard[]) => void
   setSelectedIdentity: (identity: string) => void
   setIdentityImageUrl: (url: string) => void
   setIdentitiesLastUpdated: (date: Date) => void
