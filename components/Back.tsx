@@ -3,8 +3,9 @@ import { useLCGStore } from '@/store/useLCGStore'
 import React from 'react'
 
 export default function Back() {
-  const { boxDepth, boxHeight, boxWidth, tuckFlapHeight, deckName, flapHeight, printOffset } = useBoxDimensions()
+  const { boxDepth, boxHeight, boxWidth, tuckFlapHeight, deckName, flapHeight, printOffset, deckNameFontSize } = useBoxDimensions()
   const { faction, selectedIdentity, getImageUrl } = useLCGStore()
+  useBoxDimensions()
 
   return (
     <div className="flex flex-col items-center">
@@ -25,7 +26,9 @@ export default function Back() {
       </div>
       <div style={{ width: `${boxWidth}mm`, height: `${boxDepth}mm` }} className={`relative items-center border border-b-0 border-black  ${faction}`}>
         <div className="absolute inset-6 flex justify-items-center items-center bg-white rounded-md font-bold text-black text-center grow">
-          <span className="w-full text-center">{deckName}</span>
+          <span className="w-full text-center" style={{ fontSize: deckNameFontSize }}>
+            {deckName}
+          </span>
         </div>
       </div>
 
