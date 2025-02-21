@@ -56,7 +56,7 @@ export const useBoxDimensions = create<BoxState>()(
       selectedIdentity: '',
       identityImageUrl: '',
       identitiesLastUpdated: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
-      deckNameFontSize: 14,
+      deckNameFontSize: 17,
 
       setBoxWidth: (width) => set({ boxWidth: width }),
       setBoxHeight: (height) => set({ boxHeight: height }),
