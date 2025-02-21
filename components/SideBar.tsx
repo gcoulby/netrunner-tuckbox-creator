@@ -1,6 +1,6 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
 import { useLCGStore } from '@/store/useLCGStore'
-import { Faction, IdentityCard, LCG } from '@/types'
+import { NetrunnerFaction, IdentityCard, LCG, ArkhamFaction } from '@/types'
 import React, { useEffect } from 'react'
 
 export default function SideBar() {
@@ -88,7 +88,16 @@ export default function SideBar() {
       <h1 className="text-white text-lg">Game</h1>
       <div className="flex flex-row items-center gap-2">
         <div className="w-1/3 text-white">Game</div>
-        <select className="p-2 w-2/3" value={lcg} onChange={(e) => setLcg(e.target.value as LCG)}>
+        <select
+          className="p-2 w-2/3"
+          value={lcg}
+          onChange={(e) => {
+            setLcg(e.target.value as LCG)
+            setSelectedIdentity('')
+            setFaction('NEUTRAL')
+            setDeckName('')
+          }}
+        >
           {Object.values(LCG).map((game) => (
             <option key={game}>{game}</option>
           ))}
@@ -104,11 +113,24 @@ export default function SideBar() {
 
       <div className="flex flex-row items-center gap-2">
         <div className="w-1/3 text-white">Faction</div>
-        <select className="p-2 w-2/3" value={faction} onChange={(e) => setFaction(e.target.value as Faction)}>
-          {Object.values(Faction).map((faction) => (
-            <option key={faction}>{faction}</option>
-          ))}
-        </select>
+        {lcg === LCG.ARKHAM && (
+          <select className="p-2 w-2/3" value={faction} onChange={(e) => setFaction(e.target.value)}>
+            <>
+              {Object.values(ArkhamFaction).map((faction) => (
+                <option key={faction}>{faction}</option>
+              ))}
+            </>
+          </select>
+        )}
+        {lcg === LCG.NETRUNNER && (
+          <select className="p-2 w-2/3" value={faction} onChange={(e) => setFaction(e.target.value as NetrunnerFaction)}>
+            <>
+              {Object.values(NetrunnerFaction).map((faction) => (
+                <option key={faction}>{faction}</option>
+              ))}
+            </>
+          </select>
+        )}
       </div>
 
       <div className="flex flex-row items-center gap-2">

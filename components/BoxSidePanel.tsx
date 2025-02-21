@@ -1,16 +1,23 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
 import { useLCGStore } from '@/store/useLCGStore'
+import { LCG } from '@/types'
 import Image from 'next/image'
 import React from 'react'
 
 export default function BoxSidePanel() {
-  const { faction } = useLCGStore()
+  const { lcg, faction } = useLCGStore()
   const { boxDepth, boxHeight, deckName, deckNameFontSize } = useBoxDimensions()
   return (
     <div style={{ width: `${boxDepth}mm`, height: `${boxHeight}mm` }} className={`relative items-center border border-s-0 border-black ${faction}`}>
       <div className="items-center bg-white ms-[12%] mt-[12%] rounded w-3/4 h-[90%]">
         {faction !== 'NEUTRAL' ? (
-          <Image src={`nsg-assets/NISEI_${faction}.svg`} alt="Box side panel" width={36} height={36} className="left-[calc(50%-1.125rem)] absolute" />
+          <Image
+            src={`${lcg === LCG.NETRUNNER ? 'nsg-assets/NISEI_' : 'ark-assets/'}${faction}.svg`}
+            alt="Box side panel"
+            width={36}
+            height={36}
+            className="left-[calc(50%-1.125rem)] absolute"
+          />
         ) : (
           <div className="w-9 h-9"></div>
         )}
@@ -24,7 +31,7 @@ export default function BoxSidePanel() {
         {/* </div> */}
         {faction !== 'NEUTRAL' ? (
           <Image
-            src={`nsg-assets/NISEI_${faction}.svg`}
+            src={`${lcg === LCG.NETRUNNER ? 'nsg-assets/NISEI_' : 'ark-assets/'}${faction}.svg`}
             alt="Box side panel"
             width={36}
             height={36}

@@ -44,7 +44,7 @@ body {
   border-color: rgb(88, 21, 4)
 }
 
-.CRIMINAL {
+.CRIMINAL, .GUARDIAN {
   background: radial-gradient(circle, rgb(123, 192, 233) 0%, rgb(4, 87, 126) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
@@ -53,7 +53,7 @@ body {
 }
 
 
-.HB {
+.HB, .MYSTIC {
   background: radial-gradient(circle, rgb(169, 149, 221) 0%, rgb(24, 14, 53) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
@@ -61,7 +61,7 @@ body {
   border-color: rgba(67,54,105,1)
 }
 
-.JINTEKI {
+.JINTEKI, .SURVIVOR {
   background: radial-gradient(circle, rgb(250, 89, 89) 0%, rgb(78, 3, 3) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
@@ -69,7 +69,7 @@ body {
   border-color: rgb(163, 24, 24)
 }
 
-.NBN {
+.NBN, .SEEKER  {
   background: radial-gradient(circle, rgb(247, 221, 135) 0%, rgb(253, 165, 0) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
@@ -93,13 +93,17 @@ body {
   border-color: rgb(71, 67, 83)
 }
 
-.WEYLAND {
+.WEYLAND, .ROGUE {
   background: radial-gradient(circle, rgb(115, 141, 129) 0%, rgb(35, 54, 34) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
   background-size: 400px;
   background-position: center;
   background-blend-mode: multiply;
   border-color: rgb(35, 54, 34)
 }
+
+
+
+
 
 
 @media print {

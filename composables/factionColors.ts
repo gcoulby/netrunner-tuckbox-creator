@@ -13,6 +13,7 @@
   WEYLAND = 'WEYLAND',
 */
 export const GetFactionGradient = (faction: string) => {
+  console.log('FAC', faction)
   switch (faction) {
     case 'NEUTRAL':
       return 'from-neutral to-neutral-dark'

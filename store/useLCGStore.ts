@@ -1,11 +1,11 @@
-import { Faction, IdentityCard, LCG } from '@/types'
+import { NetrunnerFaction, IdentityCard, LCG } from '@/types'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
 interface ILCGStore {
   lcg: LCG
   setLcg: (Lcg: LCG) => void
-  faction: Faction
+  faction: string
   netrunnerIdentities: IdentityCard[]
   arkhamIdentities: IdentityCard[]
   selectedIdentity: string
@@ -14,7 +14,7 @@ interface ILCGStore {
   arkhamIdentitiesLastUpdated: Date
 
   getImageUrl: () => string
-  setFaction: (faction: Faction) => void
+  setFaction: (faction: string) => void
   setNetrunnerIdentities: (netrunnerIdentities: IdentityCard[]) => void
   setArkhamIdentities: (arkhamIdentities: IdentityCard[]) => void
   setSelectedIdentity: (identity: string) => void
@@ -28,7 +28,7 @@ export const useLCGStore = create<ILCGStore>()(
     (set, get) => ({
       lcg: LCG.NETRUNNER,
       setLcg: (lcg) => set({ lcg }),
-      faction: Faction.NEUTRAL,
+      faction: 'NEUTRAL',
       netrunnerIdentities: [],
       arkhamIdentities: [],
       selectedIdentity: '',

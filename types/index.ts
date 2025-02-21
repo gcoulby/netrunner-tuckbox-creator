@@ -3,7 +3,7 @@ export enum LCG {
   ARKHAM = 'Arkham Horror: The Card Game',
 }
 
-export enum Faction {
+export enum NetrunnerFaction {
   NEUTRAL = 'NEUTRAL',
   ADAM = 'ADAM',
   ANARCH = 'ANARCH',
@@ -15,6 +15,15 @@ export enum Faction {
   SHAPER = 'SHAPER',
   SUNNY = 'SUNNY',
   WEYLAND = 'WEYLAND',
+}
+
+export enum ArkhamFaction {
+  NEUTRAL = 'NEUTRAL',
+  GUARDIAN = 'GUARDIAN',
+  MYSTIC = 'MYSTIC',
+  ROGUE = 'ROGUE',
+  SEEKER = 'SEEKER',
+  SURVIVOR = 'SURVIVOR',
 }
 
 // export type NetrunnerCard = {
