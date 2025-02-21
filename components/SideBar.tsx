@@ -50,7 +50,8 @@ export default function SideBar() {
       <h1 className="text-white text-lg">Deck Details</h1>
       <div className="flex flex-row items-center gap-2">
         <label className="w-1/3 text-white">Deck Name</label>
-        <input className="p-2 w-2/3" type=" text" value={deckName} onChange={(e) => setDeckName(e.target.value)} />
+        <textarea className="p-2 w-2/3" value={deckName} onChange={(e) => setDeckName(e.target.value)} />
+        {/* <input className="p-2 w-2/3" type=" text" value={deckName} onChange={(e) => setDeckName(e.target.value)} /> */}
       </div>
 
       <div className="flex flex-row items-center gap-2">
