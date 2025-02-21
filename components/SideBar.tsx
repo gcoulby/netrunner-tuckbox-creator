@@ -16,6 +16,7 @@ export default function SideBar() {
     identities,
     selectedIdentity,
     identitiesLastUpdated,
+    deckNameFontSize,
 
     setBoxDepth,
     setBoxHeight,
@@ -29,6 +30,7 @@ export default function SideBar() {
     setIdentities,
     setSelectedIdentity,
     setIdentitiesLastUpdated,
+    setDeckNameFontSize,
   } = useBoxDimensions()
 
   useEffect(() => {
@@ -78,6 +80,10 @@ export default function SideBar() {
       <h1 className="text-white text-lg">Box Dimension Overrides</h1>
 
       <div className="flex flex-col gap-2">
+        <div className="flex flex-row items-center gap-2">
+          <label className="w-1/3 text-white">Font Size</label>
+          <input className="p-2 w-2/3" type=" number" value={deckNameFontSize} onChange={(e) => setDeckNameFontSize(parseInt(e.target.value))} />
+        </div>
         <div className="flex flex-row items-center gap-2">
           <label className="w-1/3 text-white">Width</label>
           <input className="p-2 w-2/3" type=" number" value={boxWidth} onChange={(e) => setBoxWidth(parseInt(e.target.value))} />

@@ -22,6 +22,7 @@ interface BoxState {
   selectedIdentity: string
   identityImageUrl: string
   identitiesLastUpdated: Date
+  deckNameFontSize: number
 
   setBoxWidth: (width: number) => void
   setBoxHeight: (height: number) => void
@@ -36,6 +37,7 @@ interface BoxState {
   setSelectedIdentity: (identity: string) => void
   setIdentityImageUrl: (url: string) => void
   setIdentitiesLastUpdated: (date: Date) => void
+  setDeckNameFontSize: (size: number) => void
 }
 
 export const useBoxDimensions = create<BoxState>()(
@@ -54,6 +56,7 @@ export const useBoxDimensions = create<BoxState>()(
       selectedIdentity: '',
       identityImageUrl: '',
       identitiesLastUpdated: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      deckNameFontSize: 14,
 
       setBoxWidth: (width) => set({ boxWidth: width }),
       setBoxHeight: (height) => set({ boxHeight: height }),
@@ -68,6 +71,7 @@ export const useBoxDimensions = create<BoxState>()(
       setSelectedIdentity: (identity) => set({ selectedIdentity: identity }),
       setIdentityImageUrl: (url) => set({ identityImageUrl: url }),
       setIdentitiesLastUpdated: (date) => set({ identitiesLastUpdated: date }),
+      setDeckNameFontSize: (size) => set({ deckNameFontSize: size }),
     }),
     {
       name: 'box-dimensions-store', // Key in localStorage
