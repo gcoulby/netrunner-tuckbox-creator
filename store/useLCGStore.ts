@@ -6,17 +6,21 @@ interface ILCGStore {
   lcg: LCG
   setLcg: (Lcg: LCG) => void
   faction: Faction
-  identities: IdentityCard[]
+  netrunnerIdentities: IdentityCard[]
+  arkhamIdentities: IdentityCard[]
   selectedIdentity: string
   identityImageUrl: string
-  identitiesLastUpdated: Date
+  netrunnerIdentitiesLastUpdated: Date
+  arkhamIdentitiesLastUpdated: Date
 
   getImageUrl: () => string
   setFaction: (faction: Faction) => void
-  setIdentities: (identities: IdentityCard[]) => void
+  setNetrunnerIdentities: (netrunnerIdentities: IdentityCard[]) => void
+  setArkhamIdentities: (arkhamIdentities: IdentityCard[]) => void
   setSelectedIdentity: (identity: string) => void
   setIdentityImageUrl: (url: string) => void
-  setIdentitiesLastUpdated: (date: Date) => void
+  setNetrunnerIdentitiesLastUpdated: (date: Date) => void
+  setArkhamIdentitiesLastUpdated: (date: Date) => void
 }
 
 export const useLCGStore = create<ILCGStore>()(
@@ -25,26 +29,31 @@ export const useLCGStore = create<ILCGStore>()(
       lcg: LCG.NETRUNNER,
       setLcg: (lcg) => set({ lcg }),
       faction: Faction.NEUTRAL,
-      identities: [],
+      netrunnerIdentities: [],
+      arkhamIdentities: [],
       selectedIdentity: '',
       identityImageUrl: '',
-      identitiesLastUpdated: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      netrunnerIdentitiesLastUpdated: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+      arkhamIdentitiesLastUpdated: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
 
       getImageUrl: () => {
         switch (get().lcg) {
           case LCG.NETRUNNER:
             return `https://card-images.netrunnerdb.com/v2/large/${get().selectedIdentity}.jpg`
           case LCG.ARKHAM:
-            return `https://arkhamdb.com/bundles/cards/${get().selectedIdentity}.png`
+            const arid = get().arkhamIdentities.find((id) => id.code === get().selectedIdentity) as IdentityCard
+            return `https://arkhamdb.com/${arid?.image}`
           default:
             return ''
         }
       },
       setFaction: (faction) => set({ faction }),
-      setIdentities: (identities) => set({ identities }),
+      setNetrunnerIdentities: (netrunnerIdentities) => set({ netrunnerIdentities }),
+      setArkhamIdentities: (arkhamIdentities) => set({ arkhamIdentities }),
       setSelectedIdentity: (identity) => set({ selectedIdentity: identity }),
       setIdentityImageUrl: (url) => set({ identityImageUrl: url }),
-      setIdentitiesLastUpdated: (date) => set({ identitiesLastUpdated: date }),
+      setNetrunnerIdentitiesLastUpdated: (date) => set({ netrunnerIdentitiesLastUpdated: date }),
+      setArkhamIdentitiesLastUpdated: (date) => set({ arkhamIdentitiesLastUpdated: date }),
     }),
     {
       name: 'lcg-tuckbox-game-store', // Key in localStorage

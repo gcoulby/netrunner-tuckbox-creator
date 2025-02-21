@@ -26,36 +26,62 @@ export default function SideBar() {
     setDeckNameFontSize,
   } = useBoxDimensions()
 
-  const { faction, identities, selectedIdentity, identitiesLastUpdated, setFaction, setIdentities, setSelectedIdentity, setIdentitiesLastUpdated } =
-    useLCGStore()
+  const {
+    faction,
+    netrunnerIdentities,
+    arkhamIdentities,
+    selectedIdentity,
+    netrunnerIdentitiesLastUpdated,
+    arkhamIdentitiesLastUpdated,
+    setFaction,
+    setNetrunnerIdentities,
+    setArkhamIdentities,
+    setSelectedIdentity,
+    setNetrunnerIdentitiesLastUpdated,
+    setArkhamIdentitiesLastUpdated,
+  } = useLCGStore()
 
   const { lcg, setLcg } = useLCGStore()
 
   useEffect(() => {
     if (lcg === LCG.NETRUNNER) {
+      if (new Date(netrunnerIdentitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
       // if identities were updated in the last 24hrs, don't fetch them again
-      // if (new Date(identitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
       fetch('https://netrunnerdb.com/api/2.0/public/cards')
         .then((res) => res.json())
         .then((data) => {
-          const ids = data.data.filter((card: IdentityCard) => card.type_code === 'identity')
-          setIdentities(ids.map((id: IdentityCard) => id))
-          setIdentitiesLastUpdated(new Date())
+          const normalizedData = data.data.map((card: any) => ({
+            ...card,
+            image: `${card.code}.jpg`,
+          }))
+          const ids = normalizedData.filter((card: IdentityCard) => card.type_code === 'identity')
+          setNetrunnerIdentities(ids.map((id: IdentityCard) => id))
+          setNetrunnerIdentitiesLastUpdated(new Date())
         })
     } else if (lcg === LCG.ARKHAM) {
+      if (new Date(arkhamIdentitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
       fetch('https://arkhamdb.com/api/public/cards/')
         .then((res) => res.json())
         .then((data) => {
           const normalizedData = data.map((card: any) => ({
             ...card,
             title: card.title || card.name, // Use `title` if available, otherwise `name`
+            image: card.imagesrc ?? `bundles/cards/${card.code}.jpg`,
           }))
           const ids = normalizedData.filter((card: IdentityCard) => card.type_code === 'investigator')
-          setIdentities(ids.map((id: IdentityCard) => id))
-          setIdentitiesLastUpdated(new Date())
+          setArkhamIdentities(ids.map((id: IdentityCard) => id))
+          setArkhamIdentitiesLastUpdated(new Date())
         })
     }
-  }, [lcg, identitiesLastUpdated, setIdentities, setIdentitiesLastUpdated])
+  }, [
+    lcg,
+    netrunnerIdentitiesLastUpdated,
+    arkhamIdentitiesLastUpdated,
+    setNetrunnerIdentities,
+    setArkhamIdentities,
+    setNetrunnerIdentitiesLastUpdated,
+    setArkhamIdentitiesLastUpdated,
+  ])
 
   return (
     <aside className="print:hidden flex flex-col gap-2 bg-slate-800 px-4 w-[300px] h-svh text-xs">
@@ -89,13 +115,26 @@ export default function SideBar() {
         {/* select with search */}
         <select className="p-2 w-2/3" value={selectedIdentity} onChange={(e) => setSelectedIdentity(e.target.value)}>
           <option value="">Select Identity</option>
-          {identities
-            .sort((a, b) => a.title.localeCompare(b.title))
-            .map((identity) => (
-              <option key={identity.code} value={identity.code}>
-                {identity.title}
-              </option>
-            ))}
+          <>
+            {lcg === LCG.NETRUNNER &&
+              netrunnerIdentities
+                .sort((a, b) => a.title.localeCompare(b.title))
+                .map((identity) => (
+                  <option key={identity.code} value={identity.code}>
+                    {identity.title}
+                  </option>
+                ))}
+          </>
+          <>
+            {lcg === LCG.ARKHAM &&
+              arkhamIdentities
+                .sort((a, b) => a.title.localeCompare(b.title))
+                .map((identity) => (
+                  <option key={identity.code} value={identity.code}>
+                    {identity.title}
+                  </option>
+                ))}
+          </>
         </select>
       </div>
 

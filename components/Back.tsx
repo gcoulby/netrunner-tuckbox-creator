@@ -1,10 +1,11 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
 import { useLCGStore } from '@/store/useLCGStore'
+import { LCG } from '@/types'
 import React from 'react'
 
 export default function Back() {
   const { boxDepth, boxHeight, boxWidth, tuckFlapHeight, deckName, flapHeight, printOffset, deckNameFontSize } = useBoxDimensions()
-  const { faction, selectedIdentity, getImageUrl } = useLCGStore()
+  const { lcg, faction, selectedIdentity, getImageUrl } = useLCGStore()
   useBoxDimensions()
 
   return (
@@ -15,8 +16,15 @@ export default function Back() {
       >
         {selectedIdentity !== '' && (
           <img
+            className="max-w-[200%]"
             // className="w-full h-full"
-            style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm`, rotate: '180deg', marginTop: `-${boxHeight - flapHeight + printOffset}mm` }}
+            style={{
+              width: `${boxWidth * (lcg === LCG.ARKHAM ? 2 : 1)}mm`,
+              height: `${boxHeight}mm`,
+              rotate: '180deg',
+              marginTop: `-${boxHeight - flapHeight + printOffset}mm`,
+              marginLeft: `-${lcg === LCG.ARKHAM ? boxWidth : 0}mm`,
+            }}
             src={getImageUrl()}
             alt="Box front"
             width={boxWidth}
@@ -34,9 +42,21 @@ export default function Back() {
 
       <div
         style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm` }}
-        className={`relative flex flex-col items-center border border-s-0 border-black ${faction}`}
+        className={`relative flex flex-col items-center border border-s-0 border-black ${faction} overflow-hidden`}
       >
-        {selectedIdentity !== '' && <img className="w-full h-full" src={getImageUrl()} alt="Box front" width={boxWidth} height={boxHeight} />}
+        {selectedIdentity !== '' && (
+          <img
+            className="top-0 left-0 absolute max-w-[200%] h-full"
+            src={getImageUrl()}
+            alt="Box front"
+            width={boxWidth}
+            height={boxHeight}
+            style={{
+              width: `${boxWidth * (lcg === LCG.ARKHAM ? 2 : 1)}mm`,
+              height: `${boxHeight}mm`,
+            }}
+          />
+        )}
       </div>
       <div
         style={{ width: `${boxWidth}mm`, height: `${boxDepth}mm` }}
