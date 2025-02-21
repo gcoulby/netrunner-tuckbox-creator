@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function BoxSidePanel() {
   const { faction } = useLCGStore()
-  const { boxDepth, boxHeight, faction, deckName, deckNameFontSize } = useBoxDimensions()
+  const { boxDepth, boxHeight, deckName, deckNameFontSize } = useBoxDimensions()
   return (
     <div style={{ width: `${boxDepth}mm`, height: `${boxHeight}mm` }} className={`relative items-center border border-s-0 border-black ${faction}`}>
       <div className="relative items-center bg-white ms-[12%] mt-[12%] rounded w-3/4 h-[90%]">

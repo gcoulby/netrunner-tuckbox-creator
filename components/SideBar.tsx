@@ -13,13 +13,7 @@ export default function SideBar() {
     flapHeight,
     printOffset,
     deckName,
-<<<<<<< HEAD
-=======
-    identities,
-    selectedIdentity,
-    identitiesLastUpdated,
     deckNameFontSize,
->>>>>>> develop
 
     setBoxDepth,
     setBoxHeight,
@@ -29,13 +23,7 @@ export default function SideBar() {
     setTuckFlapHeight,
     setPrintOffset,
     setDeckName,
-<<<<<<< HEAD
-=======
-    setIdentities,
-    setSelectedIdentity,
-    setIdentitiesLastUpdated,
     setDeckNameFontSize,
->>>>>>> develop
   } = useBoxDimensions()
 
   const { faction, identities, selectedIdentity, identitiesLastUpdated, setFaction, setIdentities, setSelectedIdentity, setIdentitiesLastUpdated } =
