@@ -12,7 +12,14 @@ export default function Front() {
       style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm` }}
       className={`relative flex flex-col items-center border border-s-0 border-black ${faction} `}
     >
-      {selectedIdentity !== '' && <img className="w-full h-full" src={getImageUrl()} alt="Box front" width={boxWidth} height={boxHeight} />}
+      {selectedIdentity !== '' && (
+        <img
+          className="w-full h-full"
+          src={getImageUrl()}
+          alt="Box front"
+          style={{ width: `${boxWidth}mm`, height: `${boxHeight}mm`, rotate: '90deg' }}
+        />
+      )}
       <ThumbTab />
     </div>
   )
