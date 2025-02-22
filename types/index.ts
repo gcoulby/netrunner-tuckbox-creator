@@ -50,4 +50,6 @@ export type IdentityCard = {
   title: string
   type_code: string
   image: string
+  imagesrc?: string
+  name?: string
 }

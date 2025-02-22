@@ -11,99 +11,106 @@ body {
   font-family: 'Play' sans-serif;
 }
 
+.small-caps {
+  font-variant: small-caps;
+}
+
 
 .NEUTRAL {
   background: radial-gradient(circle, rgba(208,208,208,1) 0%, rgba(121,121,121,1) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgba(121,121,121,1)
 }
 
 .ADAM {
   background: radial-gradient(circle, rgb(173, 173, 58) 0%, rgb(117, 117, 12) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgb(117, 117, 12)
 }
 
 .ANARCH {
   background: radial-gradient(circle, rgb(202, 147, 65) 0%, rgb(158, 66, 9) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgb(158, 66, 9)
 }
 
 .APEX {
   background: radial-gradient(circle, rgb(233, 36, 1) 0%, rgb(88, 21, 4) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgb(88, 21, 4)
 }
 
-.CRIMINAL, .GUARDIAN {
+.CRIMINAL {
   background: radial-gradient(circle, rgb(123, 192, 233) 0%, rgb(4, 87, 126) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgb(4, 87, 126)
 }
 
 
-.HB, .MYSTIC {
+.HB {
   background: radial-gradient(circle, rgb(169, 149, 221) 0%, rgb(24, 14, 53) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgba(67,54,105,1)
 }
 
-.JINTEKI, .SURVIVOR {
+.JINTEKI{
   background: radial-gradient(circle, rgb(250, 89, 89) 0%, rgb(78, 3, 3) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgb(163, 24, 24)
 }
 
-.NBN, .SEEKER  {
+.NBN {
   background: radial-gradient(circle, rgb(247, 221, 135) 0%, rgb(253, 165, 0) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgba(213,213,96,1)
 }
 
 .SHAPER {
   background: radial-gradient(circle, rgb(94, 207, 94) 0%, rgb(18, 95, 11) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgb(126, 197, 119)
 }
 
 .SUNNY {
   background: radial-gradient(circle, rgba(192,175,235,1) 0%, rgb(67, 62, 82) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgb(71, 67, 83)
 }
 
-.WEYLAND, .ROGUE {
+.WEYLAND {
   background: radial-gradient(circle, rgb(115, 141, 129) 0%, rgb(35, 54, 34) 100%), url('https://i.imgur.com/vvUpbBA.jpeg');
-  background-size: 400px;
-  background-position: center;
-  background-blend-mode: multiply;
   border-color: rgb(35, 54, 34)
 }
 
 
+.MYSTIC {
+  background: radial-gradient(circle, rgb(169, 149, 221) 0%, rgb(24, 14, 53) 100%), url('https://i.imgur.com/tBOkvlE.jpeg');
+  border-color: rgba(67,54,105,1)
+}
+
+.SURVIVOR {
+  background: radial-gradient(circle, rgb(250, 89, 89) 0%, rgb(78, 3, 3) 100%), url('https://i.imgur.com/tBOkvlE.jpeg');
+  border-color: rgb(163, 24, 24)
+}
+
+.SEEKER {
+  background: radial-gradient(circle, rgb(247, 221, 135) 0%, rgb(253, 165, 0) 100%), url('https://i.imgur.com/tBOkvlE.jpeg');
+  border-color: rgba(213,213,96,1)
+}
+
+.GUARDIAN {
+  background: radial-gradient(circle, rgb(123, 192, 233) 0%, rgb(4, 87, 126) 100%), url('https://i.imgur.com/tBOkvlE.jpeg');
+  border-color: rgb(4, 87, 126)
+}
+
+.ROGUE {
+  background: radial-gradient(circle, rgb(115, 141, 129) 0%, rgb(35, 54, 34) 100%), url('https://i.imgur.com/tBOkvlE.jpeg');
+  border-color: rgb(35, 54, 34)
+}
 
 
+.arkham-horror--the-card-game.NEUTRAL {
+  background: radial-gradient(circle, rgba(208,208,208,1) 0%, rgba(121,121,121,1) 100%), url('https://i.imgur.com/tBOkvlE.jpeg');
+  border-color: rgba(121,121,121,1)
+}
+
+
+
+.box-texture {
+  background-size: 600px !important;
+  background-position: center !important;
+  background-blend-mode: multiply !important;
+}
 
 
 @media print {

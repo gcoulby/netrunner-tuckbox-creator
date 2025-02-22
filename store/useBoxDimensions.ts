@@ -15,7 +15,6 @@ interface BoxState {
   tuckFlapHeight: number
   scale: number
   printOffset: number
-  // faction: Faction
   deckName: string
   identities: IdentityCard[]
   selectedIdentity: string
@@ -30,7 +29,6 @@ interface BoxState {
   setTuckFlapHeight: (height: number) => void
   setScale: (scale: number) => void
   setPrintOffset: (offset: number) => void
-  // setFaction: (faction: Faction) => void
   setDeckName: (name: string) => void
   setIdentities: (identities: IdentityCard[]) => void
   setSelectedIdentity: (identity: string) => void
@@ -49,7 +47,6 @@ export const useBoxDimensions = create<BoxState>()(
       tuckFlapHeight: 16,
       scale: 1,
       printOffset: 4,
-      // faction: Faction.NEUTRAL,
       deckName: '',
       identities: [],
       selectedIdentity: '',
@@ -64,7 +61,6 @@ export const useBoxDimensions = create<BoxState>()(
       setTuckFlapHeight: (height) => set({ tuckFlapHeight: height }),
       setScale: (scale) => set({ scale }),
       setPrintOffset: (offset) => set({ printOffset: offset }),
-      // setFaction: (faction) => set({ faction }),
       setDeckName: (name) => set({ deckName: name }),
       setIdentities: (identities) => set({ identities }),
       setSelectedIdentity: (identity) => set({ selectedIdentity: identity }),

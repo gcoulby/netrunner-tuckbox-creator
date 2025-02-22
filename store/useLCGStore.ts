@@ -1,4 +1,4 @@
-import { NetrunnerFaction, IdentityCard, LCG } from '@/types'
+import { IdentityCard, LCG } from '@/types'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
@@ -14,6 +14,7 @@ interface ILCGStore {
   arkhamIdentitiesLastUpdated: Date
 
   getImageUrl: () => string
+  getTextureClasses: () => string
   setFaction: (faction: string) => void
   setNetrunnerIdentities: (netrunnerIdentities: IdentityCard[]) => void
   setArkhamIdentities: (arkhamIdentities: IdentityCard[]) => void
@@ -47,6 +48,11 @@ export const useLCGStore = create<ILCGStore>()(
             return ''
         }
       },
+      getTextureClasses: () => {
+        const shortFaction = get().lcg.toLowerCase().replace(/[ :-]/g, '-')
+        return `box-texture ${shortFaction} ${get().faction}`
+      },
+
       setFaction: (faction) => set({ faction }),
       setNetrunnerIdentities: (netrunnerIdentities) => set({ netrunnerIdentities }),
       setArkhamIdentities: (arkhamIdentities) => set({ arkhamIdentities }),

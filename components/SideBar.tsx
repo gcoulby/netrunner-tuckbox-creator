@@ -50,7 +50,7 @@ export default function SideBar() {
       fetch('https://netrunnerdb.com/api/2.0/public/cards')
         .then((res) => res.json())
         .then((data) => {
-          const normalizedData = data.data.map((card: any) => ({
+          const normalizedData = data.data.map((card: IdentityCard) => ({
             ...card,
             image: `${card.code}.jpg`,
           }))
@@ -63,7 +63,7 @@ export default function SideBar() {
       fetch('https://arkhamdb.com/api/public/cards/')
         .then((res) => res.json())
         .then((data) => {
-          const normalizedData = data.map((card: any) => ({
+          const normalizedData = data.map((card: IdentityCard) => ({
             ...card,
             title: card.title || card.name, // Use `title` if available, otherwise `name`
             image: card.imagesrc ?? `bundles/cards/${card.code}.jpg`,
@@ -198,6 +198,14 @@ export default function SideBar() {
           <input className="p-2 w-2/3" type=" number" value={printOffset} onChange={(e) => setPrintOffset(parseInt(e.target.value))} />
         </div>
       </div>
+      <hr className="mt-4" />
+      <p className="mt-4 text-white italic">
+        I know this is called Netrunner Tuckbox Creator and it has Arkham support. I was asked if it could be done, and was curious. I do not play
+        Arkham, so I hopefully it works. I did make custom faction icons for Arkham as I could not find any.
+      </p>
+      <a href="https://grahamcoulby.co.uk" className="text-white" target="_blank" rel="noopener noreferrer">
+        <img src={'https://grahamcoulby.co.uk/_next/static/media/logo.625befc3.png'} alt="gc-logo" width={50} />
+      </a>
     </aside>
   )
 }
