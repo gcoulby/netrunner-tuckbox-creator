@@ -1,19 +1,28 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BoxSidePanel from './BoxSidePanel'
+import { useLCGStore } from '@/store/useLCGStore'
 
 export default function RightSide() {
-  const { boxDepth, flapHeight, faction } = useBoxDimensions()
+  const { boxDepth, flapHeight } = useBoxDimensions()
+  const { lcg, faction, getTextureClasses } = useLCGStore()
+
+  const [textureClasses, setTextureClasses] = useState('')
+
+  useEffect(() => {
+    setTextureClasses(getTextureClasses())
+  }, [lcg, faction, getTextureClasses])
+
   return (
     <div className="flex flex-col items-center">
       <div
         style={{ width: `${boxDepth}mm`, height: `${flapHeight}mm` }}
-        className={`relative flex flex-col items-center border border-s-0 border-b-0  rounded-tr-[15mm] ${faction}`}
+        className={`relative flex flex-col items-center border border-s-0 border-b-0  rounded-tr-[15mm] ${textureClasses}`}
       ></div>
       <BoxSidePanel />
       <div
         style={{ width: `${boxDepth}mm`, height: `${flapHeight}mm` }}
-        className={`relative flex flex-col items-center border border-s-0 border-t-0  rounded-br-[15mm] ${faction}`}
+        className={`relative flex flex-col items-center border border-s-0 border-t-0  rounded-br-[15mm] ${textureClasses}`}
       ></div>
     </div>
   )

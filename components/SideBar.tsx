@@ -1,5 +1,6 @@
 import { useBoxDimensions } from '@/store/useBoxDimensions'
-import { Faction, NetrunnerCard } from '@/types'
+import { useLCGStore } from '@/store/useLCGStore'
+import { NetrunnerFaction, IdentityCard, LCG, ArkhamFaction } from '@/types'
 import React, { useEffect } from 'react'
 
 export default function SideBar() {
@@ -11,11 +12,7 @@ export default function SideBar() {
     tuckFlapHeight,
     flapHeight,
     printOffset,
-    faction,
     deckName,
-    identities,
-    selectedIdentity,
-    identitiesLastUpdated,
     deckNameFontSize,
 
     setBoxDepth,
@@ -25,28 +22,88 @@ export default function SideBar() {
     setScale,
     setTuckFlapHeight,
     setPrintOffset,
-    setFaction,
     setDeckName,
-    setIdentities,
-    setSelectedIdentity,
-    setIdentitiesLastUpdated,
     setDeckNameFontSize,
   } = useBoxDimensions()
 
+  const {
+    faction,
+    netrunnerIdentities,
+    arkhamIdentities,
+    selectedIdentity,
+    netrunnerIdentitiesLastUpdated,
+    arkhamIdentitiesLastUpdated,
+    setFaction,
+    setNetrunnerIdentities,
+    setArkhamIdentities,
+    setSelectedIdentity,
+    setNetrunnerIdentitiesLastUpdated,
+    setArkhamIdentitiesLastUpdated,
+  } = useLCGStore()
+
+  const { lcg, setLcg } = useLCGStore()
+
   useEffect(() => {
-    // if identities were updated in the last 24hrs, don't fetch them again
-    if (new Date(identitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
-    fetch('https://netrunnerdb.com/api/2.0/public/cards')
-      .then((res) => res.json())
-      .then((data) => {
-        const ids = data.data.filter((card: NetrunnerCard) => card.type_code === 'identity')
-        setIdentities(ids.map((id: NetrunnerCard) => id))
-        setIdentitiesLastUpdated(new Date())
-      })
-  }, [identitiesLastUpdated, setIdentities, setIdentitiesLastUpdated])
+    if (lcg === LCG.NETRUNNER) {
+      if (new Date(netrunnerIdentitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
+      // if identities were updated in the last 24hrs, don't fetch them again
+      fetch('https://netrunnerdb.com/api/2.0/public/cards')
+        .then((res) => res.json())
+        .then((data) => {
+          const normalizedData = data.data.map((card: IdentityCard) => ({
+            ...card,
+            image: `${card.code}.jpg`,
+          }))
+          const ids = normalizedData.filter((card: IdentityCard) => card.type_code === 'identity')
+          setNetrunnerIdentities(ids.map((id: IdentityCard) => id))
+          setNetrunnerIdentitiesLastUpdated(new Date())
+        })
+    } else if (lcg === LCG.ARKHAM) {
+      if (new Date(arkhamIdentitiesLastUpdated as unknown as string)?.getTime() > Date.now() - 24 * 60 * 60 * 1000) return
+      fetch('https://arkhamdb.com/api/public/cards/')
+        .then((res) => res.json())
+        .then((data) => {
+          const normalizedData = data.map((card: IdentityCard) => ({
+            ...card,
+            title: card.title || card.name, // Use `title` if available, otherwise `name`
+            image: card.imagesrc ?? `bundles/cards/${card.code}.jpg`,
+          }))
+          const ids = normalizedData.filter((card: IdentityCard) => card.type_code === 'investigator')
+          setArkhamIdentities(ids.map((id: IdentityCard) => id))
+          setArkhamIdentitiesLastUpdated(new Date())
+        })
+    }
+  }, [
+    lcg,
+    netrunnerIdentitiesLastUpdated,
+    arkhamIdentitiesLastUpdated,
+    setNetrunnerIdentities,
+    setArkhamIdentities,
+    setNetrunnerIdentitiesLastUpdated,
+    setArkhamIdentitiesLastUpdated,
+  ])
 
   return (
     <aside className="print:hidden flex flex-col gap-2 bg-slate-800 px-4 w-[300px] h-svh text-xs">
+      <h1 className="text-white text-lg">Game</h1>
+      <div className="flex flex-row items-center gap-2">
+        <div className="w-1/3 text-white">Game</div>
+        <select
+          className="p-2 w-2/3"
+          value={lcg}
+          onChange={(e) => {
+            setLcg(e.target.value as LCG)
+            setSelectedIdentity('')
+            setFaction('NEUTRAL')
+            setDeckName('')
+          }}
+        >
+          {Object.values(LCG).map((game) => (
+            <option key={game}>{game}</option>
+          ))}
+        </select>
+      </div>
+
       <h1 className="text-white text-lg">Deck Details</h1>
       <div className="flex flex-row items-center gap-2">
         <label className="w-1/3 text-white">Deck Name</label>
@@ -56,11 +113,24 @@ export default function SideBar() {
 
       <div className="flex flex-row items-center gap-2">
         <div className="w-1/3 text-white">Faction</div>
-        <select className="p-2 w-2/3" value={faction} onChange={(e) => setFaction(e.target.value as Faction)}>
-          {Object.values(Faction).map((faction) => (
-            <option key={faction}>{faction}</option>
-          ))}
-        </select>
+        {lcg === LCG.ARKHAM && (
+          <select className="p-2 w-2/3" value={faction} onChange={(e) => setFaction(e.target.value)}>
+            <>
+              {Object.values(ArkhamFaction).map((faction) => (
+                <option key={faction}>{faction}</option>
+              ))}
+            </>
+          </select>
+        )}
+        {lcg === LCG.NETRUNNER && (
+          <select className="p-2 w-2/3" value={faction} onChange={(e) => setFaction(e.target.value as NetrunnerFaction)}>
+            <>
+              {Object.values(NetrunnerFaction).map((faction) => (
+                <option key={faction}>{faction}</option>
+              ))}
+            </>
+          </select>
+        )}
       </div>
 
       <div className="flex flex-row items-center gap-2">
@@ -68,13 +138,26 @@ export default function SideBar() {
         {/* select with search */}
         <select className="p-2 w-2/3" value={selectedIdentity} onChange={(e) => setSelectedIdentity(e.target.value)}>
           <option value="">Select Identity</option>
-          {identities
-            .sort((a, b) => a.title.localeCompare(b.title))
-            .map((identity) => (
-              <option key={identity.code} value={identity.code}>
-                {identity.title}
-              </option>
-            ))}
+          <>
+            {lcg === LCG.NETRUNNER &&
+              netrunnerIdentities
+                .sort((a, b) => a.title.localeCompare(b.title))
+                .map((identity) => (
+                  <option key={identity.code} value={identity.code}>
+                    {identity.title}
+                  </option>
+                ))}
+          </>
+          <>
+            {lcg === LCG.ARKHAM &&
+              arkhamIdentities
+                .sort((a, b) => a.title.localeCompare(b.title))
+                .map((identity) => (
+                  <option key={identity.code} value={identity.code}>
+                    {identity.title}
+                  </option>
+                ))}
+          </>
         </select>
       </div>
 
@@ -115,6 +198,14 @@ export default function SideBar() {
           <input className="p-2 w-2/3" type=" number" value={printOffset} onChange={(e) => setPrintOffset(parseInt(e.target.value))} />
         </div>
       </div>
+      <hr className="mt-4" />
+      <p className="mt-4 text-white italic">
+        I know this is called Netrunner Tuckbox Creator and it has Arkham support. I was asked if it could be done, and was curious. I do not play
+        Arkham, so I hopefully it works. I did make custom faction icons for Arkham as I could not find any.
+      </p>
+      <a href="https://grahamcoulby.co.uk" className="text-white" target="_blank" rel="noopener noreferrer">
+        <img src={'https://grahamcoulby.co.uk/_next/static/media/logo.625befc3.png'} alt="gc-logo" width={50} />
+      </a>
     </aside>
   )
 }
